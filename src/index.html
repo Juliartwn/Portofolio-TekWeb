@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="/dist/output.css" rel="stylesheet" />
+  <title>JULTWN PORTOFOLIO</title>
+
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header class="bg-transparent absolute top-0 left-0 w-full flex items-center z-10 ">
+    <div class="container mx-auto">
+      <div class="flex items-center justify-between relative">
+        <div class="px-6 lg:px-15">
+          <a href="#" class="font-bold text-xl text-ijo block py-6 md:text-2xl lg:text-3xl">JULTWN.</a>
+        </div>
+        <div class="flex items-center px-4 ">
+          <button id="hamburger" name="hamburger" type="button" class="block absolute right-4 md:hidden">
+            <span class="hamburger-line transition duration-300 ease-in-out origin-top-left"></span>
+            <span class="hamburger-line transition duration-300 ease-in-out"></span>
+            <span class="hamburger-line transition duration-300 ease-in-out origin-bottom-left"></span>
+          </button>
+
+          <nav id="nav-menu"
+            class="hidden absolute py-5 bg-[#2d3636] shadow-lg  rounded-lg max-w-[250px] w-full right-4 top-full md:block md:static md:bg-transparent md:max-w-full md:shadow-none md:rounded-none">
+            <ul class="block md:flex">
+              <li class="group">
+                <a href="#About" class="text-ijo text-base py-2 mx-8 flex  group-hover:text-slate-50">About</a>
+              </li>
+              <li class="group">
+                <a href="#Project" class="text-ijo text-base py-2 mx-8 flex group-hover:text-slate-50">Project</a>
+              </li>
+              <li class="group">
+                <a href="#Contact" class="text-ijo text-base py-2 mx-8 flex group-hover:text-slate-50">Contact</a>
+              </li>
+            </ul>
+          </nav>
+
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Navbar End -->
+
+  <!-- About -->
+  <section class="py-28 bg-gelap md:py-40" id="About">
+    <div class="container mx-auto">
+      <div class="flex flex-wrap ">
+        <div class="w-full self-end px-4 md:w-1/2">
+          <div class="mb-20 md:mb-0">
+            <img src="/dist/assets/Foto.svg" alt="Foto" class="max-w-full mx-auto rounded-full shadow-lg" />
+          </div>
+        </div>
+
+        <div class="w-full self-center px-6 md:w-1/2 lg:pr-15">
+          <h2 class="text-base font-bold text-slate-50 mb-6 md:text-xl lg:text-2xl">Hii, I’am Kadek Juli Artawan</h2>
+          <h1 class="font-bold text-xl text-slate-50 mb-6 md:text-2xl lg:text-3xl">BEGINNER UI DESIGNER AND PROGRAMMER
+          </h1>
+          <p class="mb-6 text-slate-50 text-xs md:text-base lg:text-xl">I am a beginner in the world of user interface
+            (UI) design and programming, and I am very excited to share some of my best projects with you</p>
+          <a href="/dist/assets/Contoh CV.pdf" download="CV JULTWN"
+            class="bg-ijo py-3 px-5 text-slate-50 rounded-lg mt-6 text-xs hover:bg-green-600 transition-colors ease-in delay-150 md:text-base lg:text-xl">Download
+            CV</a>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+  <!-- About End -->
+
+  <!-- My Project -->
+  <section class="bg-abu" id="Project">
+    <div class="container mx-auto pb-14">
+      <div class="flex flex-col items-center">
+        <h1 class="text-slate-50 mt-8 text-2xl font-bold md:text-3xl">My Project</h1>
+        <div class="bg-ijo w-24 h-2 rounded mt-2 mb-16"></div>
+        <div class="flex justify-center gap-16 flex-wrap">
+          <!-- projrct 1 -->
+          <div class="bg-gelap w-80 h-78 rounded-2xl mb-8 shadow-lg">
+            <img src="/dist/assets/Project 1.svg" alt="" class="rounded-t-2xl" />
+            <div class="flex justify-between py-4 px-4">
+              <h2 class="text-slate-50 text-base font-semibold">
+                UI Studee Apps
+              </h2>
+              <a href="https://www.figma.com/file/rdfrubgN63Ps0qGPDd6DIz/UI-Studee-App?type=design&node-id=1%3A2&mode=design&t=aRa5SHFnEgk8igGO-1" class="text-ijo text-base hover:text-slate-50">View</a>
+            </div>
+          </div>
+          <!-- project 2 -->
+          <div class="bg-gelap w-80 h-78 rounded-2xl mb-8 shadow-lg">
+            <img src="/dist/assets/Project 2.svg" alt="" class="rounded-t-2xl" />
+            <div class="flex justify-between py-4 px-4">
+              <h2 class="text-slate-50 text-base font-semibold">
+                UI Portofolio Web
+              </h2>
+              <a href="https://www.figma.com/file/feuGOzxAJLHh7wAIrN9Chc/UI-Portofolio?type=design&node-id=0%3A1&mode=design&t=xYWz2HYdmDXffXL4-1" class="text-ijo text-base hover:text-slate-50">View</a>
+            </div>
+          </div>
+          <!-- project 3 -->
+          <div class="bg-gelap w-80 h-78 rounded-2xl mb-8 shadow-lg">
+            <img src="/dist/assets/Project 3.svg" alt="" class="rounded-t-2xl" />
+            <div class="flex justify-between py-4 px-4">
+              <h2 class="text-slate-50 text-base font-semibold">
+                UI Calculator
+              </h2>
+              <a href="https://www.figma.com/file/EDIVP0RPe19Eg2bG6Mz47W/UI-Calculator?type=design&node-id=0%3A1&mode=design&t=aiUVOHELa3smHsoQ-1" class="text-ijo text-base hover:text-slate-50">View</a>
+            </div>
+          </div>
+          <!-- project 4 -->
+          <div class="bg-gelap w-80 h-78 rounded-2xl mb-8 shadow-lg">
+            <img src="/dist/assets/Project 4.svg" alt="" class="rounded-t-2xl" />
+            <div class="flex justify-between py-4 px-4">
+              <h2 class="text-slate-50 text-base font-semibold">
+                UI E-Commerce
+              </h2>
+              <a href="https://www.figma.com/file/0Mlevm3DGYVYJSKBREa2gv/Smart-Animate?type=design&node-id=0%3A1&mode=design&t=bdfur77nXJJ8ePAz-1" class="text-ijo text-base hover:text-slate-50">View</a>
+            </div>
+          </div>
+          <!-- project 5 -->
+          <div class="bg-gelap w-80 h-78 rounded-2xl mb-8 shadow-lg">
+            <img src="/dist/assets/Project 5.svg" alt="" class="rounded-t-2xl" />
+            <div class="flex justify-between py-4 px-4">
+              <h2 class="text-slate-50 text-base font-semibold">UI Dashboard</h2>
+              <a href="https://www.figma.com/file/VDOxBulFHT4rBxsdYWm3Fm/Rawat-Inap?type=design&node-id=0%3A1&mode=design&t=Zi2LfxdpCTtriXIi-1" class="text-ijo text-base hover:text-slate-50">View</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- My Project End -->
+
+  <!-- Contact -->
+  <section class="bg-gelap" id="Contact">
+    <div class="container mx-auto pb-16 md:pb-24 lg:pb-32">
+      <div class="flex flex-col items-center">
+        <h1 class="text-slate-50 mt-9 text-2xl font-bold md:text-3xl">Contact</h1>
+        <div class="bg-ijo w-12 h-2 rounded mt-2 mb-20"></div>
+        <div class="flex justify-center gap-16 md:gap-40 lg:gap-80">
+          <!-- Email -->
+          <a href="mailto:juliartawan630@gmail.com">
+            <div
+              class="border-2 rounded-full border-ijo p-3 hover:bg-ijo transition-colors ease-in delay-150 md:p-4 lg:p-5">
+              <img src="/dist/assets/email.svg" alt="Email" class="w-7 md:w-9 lg:w-12" />
+            </div>
+          </a>
+          <!-- Instagram -->
+          <a href="#">
+            <div
+              class="border-2 rounded-full border-ijo p-3 hover:bg-ijo transition-colors ease-in delay-150 md:p-4 lg:p-5">
+              <img src="/dist/assets/instagram.svg" alt="Instagram" class="w-7 md:w-9 lg:w-12" />
+            </div>
+          </a>
+          <!-- LinkedIn -->
+          <a href="#">
+            <div
+              class="border-2 rounded-full border-ijo p-3 hover:bg-ijo transition-colors ease-in delay-150 md:p-4 lg:p-5">
+              <img src="/dist/assets/linkedin.svg" alt="Linked In" class="w-7 md:w-9 lg:w-12" />
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Contact End -->
+
+  <!-- Maker -->
+  <section class="bg-abu">
+    <div class="container mx-auto py-8">
+      <div class="flex items-center justify-center text-slate-50 text-xs md:text-base lg:text-xl">
+        <span class="text-ijo mr-1 text-xs md:text-base lg:text-xl">By: </span> Kadek Juli Artawan (2215101030)
+      </div>
+    </div>
+  </section>
+  <!-- Makers End -->
+
+  <script src="/dist/js/script.js"></script>
+</body>
+
+</html>
