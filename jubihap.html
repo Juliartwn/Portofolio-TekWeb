@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="/dist/assets/icon logo.svg"
+      type="image/x-icon"
+    />
+    <link href="dist/output.css" rel="stylesheet" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>E-Commerce</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header
+      class="bg-transparent absolute top-0 left-0 w-full flex items-center z-10"
+    >
+      <div class="container mx-auto">
+        <div class="flex items-center justify-between relative">
+          <div class="px-6 lg:px-15">
+            <a
+              href="#"
+              class="font-bold text-xl text-ijo block py-6 md:text-2xl lg:text-3xl"
+              >JUBIHAP.</a
+            >
+          </div>
+          <div class="flex items-center px-4">
+            <nav id="nav-menu">
+              <ul class="block md:flex">
+                <li class="group">
+                  <a
+                    href="index.html"
+                    class="text-slate-900 text-sm md:text-base py-2 mx-8 flex group-hover:text-ijo"
+                    >Portofolio</a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Navbar End -->
+
+    <section class="py-14 md:py-20 lg:py-24" id="app">
+      <div class="mx-auto py-6 sm:px-6 lg:px-8">
+        <div class="flex flex-wrap my-5 mx-2">
+          <div class="flex flex-col w-full md:w-2/3 lg:w-3/5 mx-auto px-3">
+
+            <!-- Search -->
+            <div class="relative w-full mb-6">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                <svg
+                  class="h-4 w-4 text-gray-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                  />
+                </svg>
+              </span>
+              <input
+                v-model="searchQuery"
+                class="w-full pl-10 p-2 border rounded-md"
+                type="text"
+                placeholder="Cari produk..."
+              />
+            </div>
+            <!-- Search End -->
+
+            <!-- Produk -->
+            <div
+              class="mt-8 mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-6"
+            >
+              <div
+                v-for="(product, index) in filteredProducts"
+                :key="product.id"
+                class="flex flex-col bg-white border shadow-sm rounded-xl"
+              >
+                <img
+                  class="w-full rounded-t-xl"
+                  :src="product.image"
+                  :alt="product.name"
+                />
+                <div class="p-4 md:p-5">
+                  <h3 class="text-base font-bold text-gray-800 lg:text-lg">
+                    {{ product.name }}
+                  </h3>
+                  <p class="mt-1 text-sm text-gray-800 lg:text-base">
+                    $ {{ product.price }}
+                  </p>
+                  <a
+                    @click="addToCart(product)"
+                    class="mt-3 py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-xs dark:focus:ring-offset-gray-800"
+                    href="#"
+                  >
+                    Add to cart
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- Product End -->
+          </div>
+
+          <!-- Keranjang -->
+          <div
+            class="w-full md:w-1/3 lg:w-2/5 mx-auto p-4 md:p-10 mt-8 md:mt-0"
+          >
+            <div>
+              <ul class="flex flex-col">
+                <li
+                  v-for="(cartItem, index) in cart"
+                  :key="cartItem.id"
+                  class="inline-flex items-center gap-x-2 py-2 px-3 md:py-3 md:px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg"
+                >
+                  <div class="flex flex-row">
+                    <img :src="cartItem.image" alt="" class="w-16 h-16" />
+                  </div>
+                  <div>
+                    <h5 class="text-lg font-semibold">{{ cartItem.name }}</h5>
+                    <div class="py-5">
+                      <button
+                        @click="decrementQuantity(index)"
+                        class="bg-slate-50 border text-xl px-3 mr-2"
+                      >
+                        -
+                      </button>
+                      {{ cartItem.quantity }}
+                      <button
+                        @click="incrementQuantity(index)"
+                        class="bg-slate-50 border text-xl px-3 ml-2"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div class="pl-3 ml-auto">
+                    <div class="-mx-1.5 -my-1.5">
+                      <button
+                        @click="removeFromCart(index)"
+                        type="button"
+                        class="inline-flex mr-2 bg-red-50 rounded-md p-1.5 text-red-500 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-50 focus:ring-red-600"
+                        data-hs-remove-element="#dismiss-alert"
+                      >
+                        <svg
+                          class="h-3 w-3"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M0.92524 0.687069C1.126 0.486219 1.39823 0.373377 1.68209 0.373377C1.96597 0.373377 2.2382 0.486219 2.43894 0.687069L8.10514 6.35813L13.7714 0.687069C13.8701 0.584748 13.9882 0.503105 14.1188 0.446962C14.2494 0.39082 14.3899 0.361248 14.5321 0.360026C14.6742 0.358783 14.8151 0.38589 14.9468 0.439762C15.0782 0.493633 15.1977 0.573197 15.2983 0.673783C15.3987 0.774389 15.4784 0.894026 15.5321 1.02568C15.5859 1.15736 15.6131 1.29845 15.6118 1.44071C15.6105 1.58297 15.5809 1.72357 15.5248 1.85428C15.4688 1.98499 15.3872 2.10324 15.2851 2.20206L9.61883 7.87312L15.2851 13.5441C15.4801 13.7462 15.588 14.0168 15.5854 14.2977C15.5831 14.5787 15.4705 14.8474 15.272 15.046C15.0735 15.2449 14.805 15.3574 14.5244 15.3599C14.2437 15.3623 13.9733 15.2543 13.7714 15.0591L8.10514 9.38812L2.43894 15.0591C2.23704 15.2543 1.96663 15.3623 1.68594 15.3599C1.40526 15.3574 1.13677 15.2449 0.938279 15.046C0.739807 14.8474 0.627232 14.5787 0.624791 14.2977C0.62235 14.0168 0.730236 13.7462 0.92524 13.5441L6.59144 7.87312L0.92524 2.20206C0.724562 2.00115 0.611816 1.72867 0.611816 1.44457C0.611816 1.16047 0.724562 0.887983 0.92524 0.687069Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="mt-5 text-right">
+              <p class="text-xl font-semibold">Total: $ {{ totalCartPrice }}</p>
+              <button
+                @click="placeOrder"
+                class="mt-3 py-3 px-4 w-full md:w-auto inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-green-500 text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all text-sm"
+              >
+                Place Order
+              </button>
+            </div>
+          </div>
+          <!-- Keranjang End -->
+        </div>
+      </div>
+    </section>
+
+    <div v-if="showAlert" class="alert"></div>
+    <script src="dist/js/script.js"></script>
+    <script>
+      const { createApp, ref } = Vue;
+
+      createApp({
+        data() {
+          return {
+            products: [
+              {
+                id: "P01",
+                name: "Vivo Y17s",
+                image:
+                  "https://asia-exstatic-vivofs.vivo.com/PSee2l50xoirPK7y/1694145422005/e9b29495cdcd8626a56673625d816000.png",
+                price: 100,
+              },
+              {
+                id: "P02",
+                name: "Vivo X90 Pro",
+                image:
+                  "https://asia-exstatic-vivofs.vivo.com/PSee2l50xoirPK7y/1672109987554/ff548482dab68707347f8861fa0bf387.png",
+                price: 76,
+              },
+              {
+                id: "P03",
+                name: "Vivo V23 5G",
+                image:
+                  "https://asia-exstatic-vivofs.vivo.com/PSee2l50xoirPK7y/1640862851451/8f67c7155d8af079f5b2e4f3719044f7.png",
+                price: 86,
+              },
+              {
+                id: "P04",
+                name: "Vivo T1 5G",
+                image:
+                  "https://asia-exstatic-vivofs.vivo.com/PSee2l50xoirPK7y/1650538378603/d9518f4c6d66af21b34895e12118e57e.png",
+                price: 69,
+              },
+              {
+                id: "P05",
+                name: "TWS Neo",
+                image:
+                  "https://asia-exstatic-vivofs.vivo.com/PSee2l50xoirPK7y/1593341407933/83a95eed56a58d07281a3f1b509e04d0.jpg",
+                price: 90,
+              },
+            ],
+            cart: [],
+            showAlert: false,
+            searchQuery: "",
+          };
+        },
+        computed: {
+          totalCartPrice() {
+            return this.cart.reduce((total, item) => {
+              return total + item.price * item.quantity;
+            }, 0);
+          },
+          filteredProducts() {
+            const query = this.searchQuery.toLowerCase();
+            return this.products.filter((product) => {
+              return (
+                product.name.toLowerCase().includes(query) ||
+                product.id.toLowerCase().includes(query)
+              );
+            });
+          },
+        },
+        methods: {
+          addToCart(product) {
+            const cartItem = this.cart.find((item) => item.id === product.id);
+
+            if (cartItem) {
+              cartItem.quantity++;
+            } else {
+              this.cart.push({
+                id: product.id,
+                name: product.name,
+                image: product.image,
+                price: product.price,
+                quantity: 1,
+              });
+            }
+          },
+          removeFromCart(index) {
+            this.cart.splice(index, 1);
+          },
+          incrementQuantity(index) {
+            this.cart[index].quantity++;
+          },
+          decrementQuantity(index) {
+            if (this.cart[index].quantity > 1) {
+              this.cart[index].quantity--;
+            } else {
+              this.removeFromCart(index);
+            }
+          },
+          placeOrder() {
+            this.showAlert = true;
+            const alertMessage = "Pesanan Anda telah berhasil dibuat!";
+            window.alert(alertMessage);
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
